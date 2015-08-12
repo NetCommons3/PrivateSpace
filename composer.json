@@ -34,7 +34,7 @@
         }
     ],
     "type":        "cakephp-plugin",
-    "keywords":    ["cakephp", "private-space"],
+    "keywords":    ["cakephp", "private_space"],
     "config": {
         "vendor-dir": "vendors"
     }
