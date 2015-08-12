@@ -8,4 +8,4 @@ PrivateSpace for NetComomns3
 
 | dependencies  | status |
 | ------------- | ------ |
-| composer.json | [![Dependency Status](https://www.versioneye.com/user/projects/(versioneye_project_ID)/badge.png)](https://www.versioneye.com/user/projects/(versioneye_project_ID)) |
+| composer.json | [![Dependency Status](https://www.versioneye.com/user/projects/55cbbdef49163d000d000276/badge.png)](https://www.versioneye.com/user/projects/55cbbdef49163d000d000276) |
