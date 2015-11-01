@@ -21,4 +21,35 @@ App::uses('Space', 'Rooms.Model');
  */
 class PrivateSpace extends Space {
 
+/**
+ * Table name
+ *
+ * @var string
+ */
+	public $useTable = 'spaces';
+
+/**
+ * Behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array(
+		'PrivateSpace.PrivateSpace',
+	);
+
+/**
+ * PrivateSpaceルームの生成
+ *
+ * @param array $data デフォルト値
+ * @return array PrivateSpaceルーム配列
+ */
+	public function createRoom($data) {
+		$data = Hash::merge(array(
+			'need_approval' => true,
+			'default_participation' => false,
+		), $data);
+
+		return parent::createRoom($data);
+	}
+
 }
