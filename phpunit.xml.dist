@@ -4,12 +4,12 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".ctp">app/Plugin/PrivateSpace</directory>
             <directory suffix=".php">app/Plugin/PrivateSpace</directory>
-			<exclude>
-				<directory suffix=".php">app/Plugin/PrivateSpace/Config/Migration</directory>
-				<directory suffix=".php">app/Plugin/PrivateSpace/Config/Schema</directory>
-				<directory suffix=".php">app/Plugin/PrivateSpace/Test/Case</directory>
-				<directory suffix=".php">app/Plugin/PrivateSpace/Test/Fixture</directory>
-			</exclude>
+            <exclude>
+                <directory suffix=".php">app/Plugin/PrivateSpace/Config/Migration</directory>
+                <directory suffix=".php">app/Plugin/PrivateSpace/Config/Schema</directory>
+                <directory suffix=".php">app/Plugin/PrivateSpace/Test/Case</directory>
+                <directory suffix=".php">app/Plugin/PrivateSpace/Test/Fixture</directory>
+            </exclude>
         </whitelist>
     </filter>
     <logging>
