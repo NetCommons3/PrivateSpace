@@ -33,10 +33,10 @@ class PrivateSpaceComponent extends Component {
 			return false;
 		}
 
-		if (! $controller->Session->check('roomAccesse.' . Current::read('Room.id'))) {
+		if (! $controller->Session->check('roomAccesse.' . Current::read('RolesRoomsUser.id'))) {
 			$RolesRoomsUser = ClassRegistry::init('Rooms.RolesRoomsUser');
 			$RolesRoomsUser->saveAccessed(Current::read('RolesRoomsUser.id'));
-			$controller->Session->write('roomAccesse.' . Current::read('Room.id'), true);
+			$controller->Session->write('roomAccesse.' . Current::read('RolesRoomsUser.id'), true);
 		}
 
 		return true;
