@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "Japanese"
-msgstr "プライベート"
+msgstr "マイルーム"
 
 msgid "English"
-msgstr "Private"
+msgstr "My room"
