@@ -26,7 +26,18 @@ class PrivateSpaceComponent extends Component {
  * @return bool
  */
 	public function accessCheck(Controller $controller) {
-		CakeLog::debug('PrivateSpaceComponent::accessCheck');
+		if (! Current::read('RolesRoomsUser.user_id') ||
+				Current::read('RolesRoomsUser.user_id') !== Current::read('User.id') ||
+				! Current::read('User.UserRoleSetting.use_private_room')) {
+
+			return false;
+		}
+
+		if (! $controller->Session->check('roomAccesse.' . Current::read('Room.id'))) {
+			$RolesRoomsUser = ClassRegistry::init('Rooms.RolesRoomsUser');
+			$RolesRoomsUser->saveAccessed(Current::read('RolesRoomsUser.id'));
+			$controller->Session->write('roomAccesse.' . Current::read('Room.id'), true);
+		}
 
 		return true;
 	}
