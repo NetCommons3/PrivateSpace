@@ -26,10 +26,18 @@ class PrivateSpaceComponent extends Component {
  * @return bool
  */
 	public function accessCheck(Controller $controller) {
-		if (! Current::read('RolesRoomsUser.user_id') ||
-				Current::read('RolesRoomsUser.user_id') !== Current::read('User.id') ||
-				! Current::read('User.UserRoleSetting.use_private_room')) {
+		if ($controller->request->params['action'] === 'download') {
+			return true;
+		}
 
+		if (! Current::read('RolesRoomsUser.user_id') ||
+				Current::read('RolesRoomsUser.user_id') !== Current::read('User.id')) {
+
+			return false;
+		}
+
+		if ($controller->request->params['plugin'] !== Current::PLUGIN_USERS &&
+				! Current::read('User.UserRoleSetting.use_private_room')) {
 			return false;
 		}
 
