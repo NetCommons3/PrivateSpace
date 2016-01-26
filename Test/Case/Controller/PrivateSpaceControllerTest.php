@@ -9,7 +9,7 @@
  * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
+App::uses('NetCommonsControllerTestCase', 'NetCommons.TestSuite');
 
 /**
  * PrivateSpaceController Test Case
@@ -17,7 +17,7 @@ App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
  * @author Shohei Nakajima <nakajimashouhei@gmail.com>
  * @package NetCommons\PrivateSpace\Test\Case\Controller
  */
-class PrivateSpaceControllerTest extends YAControllerTestCase {
+class PrivateSpaceControllerTest extends NetCommonsControllerTestCase {
 
 /**
  * Fixtures

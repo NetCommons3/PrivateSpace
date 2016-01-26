@@ -9,6 +9,7 @@
  * @copyright Copyright 2014, NetCommons Project
  */
 
+App::uses('NetCommonsTestSuite', 'NetCommons.TestSuite');
 
 /**
  * PrivateSpace All Test Suite
@@ -17,16 +18,17 @@
  * @package NetCommons\PrivateSpace\Test\Case
  * @codeCoverageIgnore
  */
-class AllPrivateSpaceTest extends CakeTestSuite {
+class AllPrivateSpaceTest extends NetCommonsTestSuite {
 
 /**
  * Suite defines all the tests for PublicSpace
  *
- * @return CakeTestSuite
+ * @return NetCommonsTestSuite
  */
 	public static function suite() {
-		$suite = new CakeTestSuite();
-		$suite->addTestDirectoryRecursive(dirname(__FILE__));
+		$plugin = preg_replace('/^All([\w]+)Test$/', '$1', __CLASS__);
+		$suite = new NetCommonsTestSuite(sprintf('All %s Plugin tests', $plugin));
+		//$suite->addTestDirectoryRecursive(CakePlugin::path($plugin) . 'Test' . DS . 'Case');
 		return $suite;
 	}
 }
