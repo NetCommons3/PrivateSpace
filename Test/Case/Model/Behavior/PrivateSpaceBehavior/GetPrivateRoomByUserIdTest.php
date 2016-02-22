@@ -25,8 +25,8 @@ class PrivateSpaceBehaviorGetPrivateRoomByUserIdTest extends NetCommonsModelTest
  * @var array
  */
 	public $fixtures = array(
-		'plugin.rooms.roles_rooms_user4test',
-		'plugin.rooms.room4test',
+		'plugin.private_space.roles_rooms_user4test',
+		'plugin.private_space.room4test',
 	);
 
 /**
