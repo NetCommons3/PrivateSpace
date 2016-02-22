@@ -36,14 +36,17 @@ class PrivateSpaceComponent extends Component {
 			return false;
 		}
 
-		if ($controller->request->params['plugin'] !== Current::PLUGIN_USERS &&
-				! Current::read('User.UserRoleSetting.use_private_room')) {
+		if ($controller->request->params['plugin'] === Current::PLUGIN_USERS) {
+			return true;
+		}
+
+		if (! Current::read('User.UserRoleSetting.use_private_room')) {
 			return false;
 		}
 
 		if (! $controller->Session->check('roomAccesse.' . Current::read('RolesRoomsUser.id'))) {
-			$RolesRoomsUser = ClassRegistry::init('Rooms.RolesRoomsUser');
-			$RolesRoomsUser->saveAccessed(Current::read('RolesRoomsUser.id'));
+			$controller->RolesRoomsUser = ClassRegistry::init('Rooms.RolesRoomsUser');
+			$controller->RolesRoomsUser->saveAccessed(Current::read('RolesRoomsUser.id'));
 			$controller->Session->write('roomAccesse.' . Current::read('RolesRoomsUser.id'), true);
 		}
 
