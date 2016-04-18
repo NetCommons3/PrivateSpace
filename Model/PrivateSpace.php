@@ -52,7 +52,8 @@ class PrivateSpace extends Space {
 		$parentRoom = $this->Room->find('first', array(
 			'recursive' => -1,
 			'fields' => array(
-				'space_id', 'active', 'default_role_key', 'need_approval', 'default_participation', 'page_layout_permitted'
+				'space_id', 'active', 'default_role_key', 'need_approval',
+				'default_participation', 'page_layout_permitted'
 			),
 			'conditions' => array('id' => Room::PRIVATE_PARENT_ID)
 		));
