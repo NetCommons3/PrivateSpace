@@ -86,4 +86,44 @@ class PrivateSpace extends Space {
 		return $result;
 	}
 
+/**
+ * PrivateSpaceルームのデフォルト値の登録
+ *
+ * @param array $data デフォルト値
+ * @return bool
+ * @throws InternalErrorException
+ */
+	public function saveDefaultFrames($data = array()) {
+		$this->loadModels([
+			'Frame' => 'Frames.Frame',
+			'Plugin' => 'PluginManager.Plugin',
+		]);
+
+		if (! Hash::get($data, 'Room.id') && ! Hash::get($data, 'Box.id')) {
+			return true;
+		}
+
+		$roomId = Hash::get($data, 'Room.id');
+		$boxId = Hash::get($data, 'Box.id');
+
+		//新着情報の登録
+		$pluginKey = 'topics';
+		$plugin = $this->Plugin->find('first', array(
+			'recursive' => -1,
+			'conditions' => array('key' => $pluginKey, 'language_id' => Current::read('Language.id')),
+		));
+		$frame = $this->Frame->create(array(
+			'room_id' => $roomId,
+			'box_id' => $boxId,
+			'plugin_key' => $pluginKey,
+			'name' => Hash::get($plugin, 'Plugin.name', ''),
+			'is_deleted' => false,
+		));
+		if (! $this->Frame->save($frame)) {
+			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+		}
+
+		return true;
+	}
+
 }
