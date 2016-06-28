@@ -117,6 +117,7 @@ class PrivateSpace extends Space {
 			'box_id' => $boxId,
 			'plugin_key' => $pluginKey,
 			'name' => Hash::get($plugin, 'Plugin.name', ''),
+			'weight' => '1',
 			'is_deleted' => false,
 		));
 		if (! $this->Frame->save($frame)) {
