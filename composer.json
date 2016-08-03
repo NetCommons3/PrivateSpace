@@ -19,7 +19,7 @@
     "authors": [
         {
             "name": "NetCommons Community",
-            "homepage": "https://github.com/NetCommons3/PrivateSpace/graphs/contributors"
+            "homepage": "http://www.netcommons.org"
         }
     ],
     "keywords": ["cakephp", "private_space"],
