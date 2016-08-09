@@ -9,11 +9,11 @@
         }
     },
     "require": {
-        "netcommons/boxes":             "dev-master",
-        "netcommons/frames":            "dev-master",
-        "netcommons/net-commons":       "dev-master",
-        "netcommons/plugin-manager":    "dev-master",
-        "netcommons/rooms":             "dev-master"
+        "netcommons/boxes":             "@dev",
+        "netcommons/frames":            "@dev",
+        "netcommons/net-commons":       "@dev",
+        "netcommons/plugin-manager":    "@dev",
+        "netcommons/rooms":             "@dev"
     },
     "license": "NetCommons License",
     "authors": [
