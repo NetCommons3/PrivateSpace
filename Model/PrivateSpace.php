@@ -12,6 +12,7 @@
  */
 
 App::uses('Space', 'Rooms.Model');
+App::uses('Container', 'Containers.Model');
 
 /**
  * PublicSpace Model
@@ -99,12 +100,12 @@ class PrivateSpace extends Space {
 			'Plugin' => 'PluginManager.Plugin',
 		]);
 
-		if (! Hash::get($data, 'Room.id') && ! Hash::get($data, 'Box.id')) {
+		$boxId = Hash::get($data, 'Box.' . Container::TYPE_MAIN . '.Box.id');
+		if (! Hash::get($data, 'Room.id') && ! $boxId) {
 			return true;
 		}
 
 		$roomId = Hash::get($data, 'Room.id');
-		$boxId = Hash::get($data, 'Box.id');
 
 		//新着情報の登録
 		$pluginKey = 'topics';
