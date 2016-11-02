@@ -53,8 +53,8 @@ class PrivateSpace extends Space {
 		$parentRoom = $this->Room->find('first', array(
 			'recursive' => -1,
 			'fields' => array(
-				'space_id', 'active', 'default_role_key', 'need_approval',
-				'default_participation', 'page_layout_permitted'
+				'space_id', 'active', 'need_approval',
+				'page_layout_permitted'
 			),
 			'conditions' => array('id' => Room::PRIVATE_PARENT_ID)
 		));
@@ -63,6 +63,8 @@ class PrivateSpace extends Space {
 			'id' => null,
 			'root_id' => Room::PRIVATE_PARENT_ID,
 			'parent_id' => Room::PRIVATE_PARENT_ID,
+			'default_role_key' => Role::ROOM_ROLE_KEY_ROOM_ADMINISTRATOR,
+			'default_participation' => false,
 		), $parentRoom['Room']));
 
 		$languages = Current::readM17n(null, 'Language');
