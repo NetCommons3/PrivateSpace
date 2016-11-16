@@ -104,11 +104,10 @@ class PrivateSpace extends Space {
 		]);
 
 		$boxId = Hash::get($data, 'Box.' . Container::TYPE_MAIN . '.Box.id');
-		if (! Hash::get($data, 'Room.id') && ! $boxId) {
+		$roomId = Hash::get($data, 'Room.id');
+		if (! $roomId || ! $boxId) {
 			return true;
 		}
-
-		$roomId = Hash::get($data, 'Room.id');
 
 		//新着情報の登録
 		$pluginKey = 'topics';
