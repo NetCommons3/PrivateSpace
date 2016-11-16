@@ -72,8 +72,8 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
 				'Room' => array(
 					'id' => '99'
 				),
+				'saved' => true
 			),
-			'saved' => true
 		);
 		$results[1] = array(
 			'data' => array(
@@ -82,8 +82,8 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
 				'Room' => array(
 					'id' => '99'
 				),
+				'saved' => false
 			),
-			'saved' => false
 		);
 		$results[2] = array(
 			'data' => array(
@@ -96,8 +96,8 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
 				),
 				'Room' => array(
 				),
+				'saved' => false
 			),
-			'saved' => false
 		);
 
 		return $results;
@@ -107,13 +107,15 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
  * Saveのテスト
  *
  * @param array $data 登録データ
- * @param bool $saved 登録したかどうか
  * @dataProvider dataProviderSave
  * @return void
  */
-	public function testSave($data, $saved) {
+	public function testSave($data) {
 		$model = $this->_modelName;
 		$method = $this->_methodName;
+
+		$saved = $data['saved'];
+		unset($data['saved']);
 
 		//テスト実行
 		$result = $this->$model->$method($data);
@@ -148,6 +150,7 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
  */
 	public function dataProviderSaveOnExceptionError() {
 		$data = $this->dataProviderSave()[0]['data'];
+		unset($data['saved']);
 
 		return array(
 			array($data, 'Frames.Frame', 'save'),
@@ -166,6 +169,7 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
  */
 	public function dataProviderSaveOnValidationError() {
 		$data = $this->dataProviderSave()[0]['data'];
+		unset($data['saved']);
 
 		return array(
 			array($data, 'Frames.Frame', 'save'),
