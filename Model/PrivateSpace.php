@@ -46,6 +46,7 @@ class PrivateSpace extends Space {
  */
 	public function createRoom($data = array()) {
 		$this->loadModels([
+			'Language' => 'M17n.Language',
 			'Room' => 'Rooms.Room',
 			'RoomsLanguage' => 'Rooms.RoomsLanguage',
 		]);
@@ -67,7 +68,7 @@ class PrivateSpace extends Space {
 			'default_participation' => false,
 		), $parentRoom['Room']));
 
-		$languages = Current::readM17n(null, 'Language');
+		$languages = $this->Language->getLanguages();
 		App::uses('L10n', 'I18n');
 		$L10n = new L10n();
 
