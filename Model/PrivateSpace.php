@@ -46,6 +46,7 @@ class PrivateSpace extends Space {
  */
 	public function createRoom($data = array()) {
 		$this->loadModels([
+			'Language' => 'M17n.Language',
 			'Room' => 'Rooms.Room',
 			'RoomsLanguage' => 'Rooms.RoomsLanguage',
 		]);
@@ -67,7 +68,7 @@ class PrivateSpace extends Space {
 			'default_participation' => false,
 		), $parentRoom['Room']));
 
-		$languages = Current::readM17n(null, 'Language');
+		$languages = $this->Language->getLanguages();
 		App::uses('L10n', 'I18n');
 		$L10n = new L10n();
 
@@ -103,11 +104,10 @@ class PrivateSpace extends Space {
 		]);
 
 		$boxId = Hash::get($data, 'Box.' . Container::TYPE_MAIN . '.Box.id');
-		if (! Hash::get($data, 'Room.id') && ! $boxId) {
+		$roomId = Hash::get($data, 'Room.id');
+		if (! $roomId || ! $boxId) {
 			return true;
 		}
-
-		$roomId = Hash::get($data, 'Room.id');
 
 		//新着情報の登録
 		$pluginKey = 'topics';
