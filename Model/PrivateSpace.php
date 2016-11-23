@@ -57,13 +57,13 @@ class PrivateSpace extends Space {
 				'space_id', 'active', 'need_approval',
 				'page_layout_permitted'
 			),
-			'conditions' => array('id' => Room::PRIVATE_PARENT_ID)
+			'conditions' => array('id' => Space::getRoomIdRoot(Space::PRIVATE_SPACE_ID))
 		));
 
 		$result = $this->Room->create(Hash::merge(array(
 			'id' => null,
-			'root_id' => Room::PRIVATE_PARENT_ID,
-			'parent_id' => Room::PRIVATE_PARENT_ID,
+			'root_id' => Space::getRoomIdRoot(Space::PRIVATE_SPACE_ID),
+			'parent_id' => Space::getRoomIdRoot(Space::PRIVATE_SPACE_ID),
 			'default_role_key' => Role::ROOM_ROLE_KEY_ROOM_ADMINISTRATOR,
 			'default_participation' => false,
 		), $parentRoom['Room']));
