@@ -100,6 +100,7 @@ class PrivateSpace extends Space {
 	public function saveDefaultFrames($data = array()) {
 		$this->loadModels([
 			'Frame' => 'Frames.Frame',
+			'FramesLanguage' => 'Frames.FramesLanguage',
 			'Plugin' => 'PluginManager.Plugin',
 		]);
 
@@ -115,15 +116,25 @@ class PrivateSpace extends Space {
 			'recursive' => -1,
 			'conditions' => array('key' => $pluginKey, 'language_id' => Current::read('Language.id')),
 		));
-		$frame = $this->Frame->create(array(
+		$data = $this->Frame->create(array(
 			'room_id' => $roomId,
 			'box_id' => $boxId,
 			'plugin_key' => $pluginKey,
-			'name' => Hash::get($plugin, 'Plugin.name', ''),
 			'weight' => '1',
 			'is_deleted' => false,
 		));
-		if (! $this->Frame->save($frame)) {
+		$frame = $this->Frame->save($data);
+		if (! $frame) {
+			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+		}
+
+		$data = $this->FramesLanguage->create(array(
+			'frame_id' => $frame['Frame']['id'],
+			'name' => Hash::get($plugin, 'Plugin.name', ''),
+			'is_origin' => true,
+			'is_translation' => false,
+		));
+		if (! $this->FramesLanguage->save($data)) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}
 

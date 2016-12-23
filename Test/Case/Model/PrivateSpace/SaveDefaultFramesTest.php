@@ -173,6 +173,7 @@ class PrivateSpaceSaveDefaultFramesTest extends PrivateSpaceSaveTest {
 
 		return array(
 			array($data, 'Frames.Frame', 'save'),
+			array($data, 'Frames.FramesLanguage', 'save'),
 		);
 	}
 
