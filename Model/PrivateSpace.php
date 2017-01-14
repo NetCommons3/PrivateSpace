@@ -100,6 +100,7 @@ class PrivateSpace extends Space {
 	public function saveDefaultFrames($data = array()) {
 		$this->loadModels([
 			'Frame' => 'Frames.Frame',
+			'FramePublicLanguage' => 'Frames.FramePublicLanguage',
 			'FramesLanguage' => 'Frames.FramesLanguage',
 			'Plugin' => 'PluginManager.Plugin',
 		]);
@@ -135,6 +136,15 @@ class PrivateSpace extends Space {
 			'is_translation' => false,
 		));
 		if (! $this->FramesLanguage->save($data)) {
+			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+		}
+
+		$data = $this->FramePublicLanguage->create(array(
+			'frame_id' => $frame['Frame']['id'],
+			'language_id' => '0',
+			'is_public' => true,
+		));
+		if (! $this->FramePublicLanguage->save($data)) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}
 
