@@ -68,21 +68,35 @@ class PrivateSpace extends Space {
 			'default_participation' => false,
 		), $parentRoom['Room']));
 
-		$languages = $this->Language->getLanguages();
 		App::uses('L10n', 'I18n');
 		$L10n = new L10n();
 
-		foreach ($languages as $i => $language) {
-			$catalog = $L10n->catalog($language['Language']['code']);
+		if (Current::read('Space.is_m17n')) {
+			$languages = $this->Language->getLanguages();
 
+			foreach ($languages as $i => $language) {
+				$catalog = $L10n->catalog($language['Language']['code']);
+
+				$roomsLanguage = $this->RoomsLanguage->create(array(
+					'id' => null,
+					'language_id' => $language['Language']['id'],
+					'room_id' => null,
+					'name' => __d('private_space', $catalog['language']),
+					'is_origin' => ($language['Language']['id'] == Current::read('Language.id'))
+				));
+
+				$result['RoomsLanguage'][$i] = $roomsLanguage['RoomsLanguage'];
+			}
+		} else {
+			$catalog = $L10n->catalog(Current::read('Language.code'));
 			$roomsLanguage = $this->RoomsLanguage->create(array(
 				'id' => null,
-				'language_id' => $language['Language']['id'],
+				'language_id' => Current::read('Language.id'),
 				'room_id' => null,
 				'name' => __d('private_space', $catalog['language']),
 			));
 
-			$result['RoomsLanguage'][$i] = $roomsLanguage['RoomsLanguage'];
+			$result['RoomsLanguage'][0] = $roomsLanguage['RoomsLanguage'];
 		}
 
 		$result['Page']['parent_id'] = null;
