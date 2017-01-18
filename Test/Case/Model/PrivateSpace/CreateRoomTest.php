@@ -73,11 +73,9 @@ class PrivateSpaceCreateRoomTest extends NetCommonsModelTestCase {
 		$this->assertEquals('room_administrator', Hash::get($result, 'Room.default_role_key'));
 		$this->assertArrayHasKey('id', Hash::get($result, 'Room'));
 
-		$this->assertCount(2, Hash::get($result, 'RoomsLanguage'));
-		$this->assertEquals('1', Hash::get($result, 'RoomsLanguage.0.language_id'));
-		$this->assertEquals('2', Hash::get($result, 'RoomsLanguage.1.language_id'));
+		$this->assertCount(1, Hash::get($result, 'RoomsLanguage'));
+		$this->assertEquals('2', Hash::get($result, 'RoomsLanguage.0.language_id'));
 		$this->assertNotEmpty(Hash::get($result, 'RoomsLanguage.0.name'));
-		$this->assertNotEmpty(Hash::get($result, 'RoomsLanguage.1.name'));
 
 		$this->assertArrayHasKey('parent_id', Hash::get($result, 'Page'));
 	}
