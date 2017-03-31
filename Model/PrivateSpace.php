@@ -104,7 +104,6 @@ class PrivateSpace extends Space {
 		return $result;
 	}
 
-
 /**
  * PrivateSpaceルームのデフォルト値の登録
  *
