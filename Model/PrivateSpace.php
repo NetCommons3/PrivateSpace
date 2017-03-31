@@ -104,6 +104,35 @@ class PrivateSpace extends Space {
 		return $result;
 	}
 
+
+/**
+ * PrivateSpaceルームのデフォルト値の登録
+ *
+ * @param array $data 登録データ
+ * @return bool
+ * @throws InternalErrorException
+ */
+	public function afterUserSave($data = array()) {
+		$this->loadModels([
+			'Room' => 'Rooms.Room',
+		]);
+
+		$room = $this->createRoom();
+		$room['RolesRoomsUser']['user_id'] = $data['User']['id'];
+		$room = $this->Room->saveRoom($room);
+		if (! $room) {
+			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+		}
+
+		//プライベートルームのデフォルトでプラグイン設置
+		$result = $this->saveDefaultFrames($room);
+		if (! $result) {
+			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+		}
+
+		return true;
+	}
+
 /**
  * PrivateSpaceルームのデフォルト値の登録
  *
