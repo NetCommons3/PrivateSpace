@@ -116,7 +116,7 @@ class PrivateSpace extends Space {
 			'Room' => 'Rooms.Room',
 		]);
 
-		$room = $this->createRoom();
+		$room = $this->createRoom($data);
 		$room['RolesRoomsUser']['user_id'] = $data['User']['id'];
 		$room = $this->Room->saveRoom($room);
 		if (! $room) {
