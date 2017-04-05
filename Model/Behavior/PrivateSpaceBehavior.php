@@ -53,7 +53,6 @@ class PrivateSpaceBehavior extends ModelBehavior {
 			'conditions' => array(
 				$model->Room->alias . '.space_id' => Space::PRIVATE_SPACE_ID,
 				$model->Room->alias . '.page_id_top NOT' => null,
-				//$model->Room->alias . '.root_id' => $rootIds,
 			),
 			'joins' => array(
 				array(

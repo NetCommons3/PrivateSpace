@@ -62,7 +62,6 @@ class PrivateSpace extends Space {
 
 		$result = $this->Room->create(Hash::merge(array(
 			'id' => null,
-			'root_id' => Space::getRoomIdRoot(Space::PRIVATE_SPACE_ID),
 			'parent_id' => Space::getRoomIdRoot(Space::PRIVATE_SPACE_ID),
 			'default_role_key' => Role::ROOM_ROLE_KEY_ROOM_ADMINISTRATOR,
 			'default_participation' => false,
