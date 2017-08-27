@@ -20,7 +20,7 @@ App::uses('NetCommonsSaveTest', 'NetCommons.TestSuite');
  * @package NetCommons\PrivateSpace\TestSuite
  * @codeCoverageIgnore
  */
-class PrivateSpaceSaveTest extends NetCommonsSaveTest {
+abstract class PrivateSpaceSaveTest extends NetCommonsSaveTest {
 
 /**
  * Fixtures
