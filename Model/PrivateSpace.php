@@ -154,7 +154,7 @@ class PrivateSpace extends Space {
 
 		//新着情報の登録
 		$pluginKey = 'topics';
-		$plugin = $this->Plugin->find('first', array(
+		$plugin = $this->Plugin->cacheFindQuery('first', array(
 			'recursive' => -1,
 			'conditions' => array('key' => $pluginKey, 'language_id' => Current::read('Language.id')),
 		));
