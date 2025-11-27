@@ -26,10 +26,6 @@ class PrivateSpaceComponent extends Component {
  * @return bool
  */
 	public function accessCheck(Controller $controller) {
-		if ($controller->request->params['action'] === 'download') {
-			return true;
-		}
-
 		if (! Current::read('RolesRoomsUser.user_id') ||
 				Current::read('RolesRoomsUser.user_id') !== Current::read('User.id')) {
 
@@ -42,6 +38,10 @@ class PrivateSpaceComponent extends Component {
 
 		if (! Current::read('User.UserRoleSetting.use_private_room')) {
 			return false;
+		}
+
+		if ($controller->request->params['action'] === 'download') {
+			return true;
 		}
 
 		if (! $controller->Session->check('roomAccesse.' . Current::read('RolesRoomsUser.id'))) {
